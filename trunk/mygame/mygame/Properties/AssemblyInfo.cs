@@ -7,11 +7,11 @@ using System.Resources;
 // 更改这些属性值以修改
 // 与程序集相关联的信息。
 [assembly: AssemblyTitle("mygame")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription ( "Wrote by M.S.cxc" )]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("zoyobar")]
 [assembly: AssemblyProduct("mygame")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("© zoyobar 2004-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -34,4 +34,4 @@ using System.Resources;
 // 设为默认值，如下所示:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("zh-CN")]
+[assembly: NeutralResourcesLanguageAttribute("en")]
