@@ -1,0 +1,23 @@
+<Application 
+    x:Class="sample.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:xna="clr-namespace:Microsoft.Xna.Framework;assembly=Microsoft.Xna.Framework.Interop">
+
+    <!--应用程序资源-->
+    <Application.Resources>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--必需的对象，用于处理应用程序的生存时间事件-->
+        <shell:PhoneApplicationService 
+            Launching="Application_Launching" Closing="Application_Closing" 
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+        
+        <!--SharedGraphicsDeviceManager 用于通过 XNA 图形 API 进行呈现-->
+        <xna:SharedGraphicsDeviceManager />
+    </Application.ApplicationLifetimeObjects>
+
+</Application>
