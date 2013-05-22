@@ -1,20 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{63FC1678-9206-4DD4-BFEB-343F33711574}</ProjectGuid>
+    <ProjectGuid>54448d91-69a6-4425-9294-31673f699e12</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>wpxna</RootNamespace>
-    <AssemblyName>wpxna</AssemblyName>
+    <RootNamespace>mygameLib</RootNamespace>
+    <AssemblyName>mygameLib</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows Phone</XnaPlatform>
     <XnaProfile>Reach</XnaProfile>
-    <XnaCrossPlatformGroupID>f14f8ede-2ff3-482e-9e19-fe312ad9dd11</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>a2c5d308-239f-4bae-8d16-1e5ce4116062</XnaCrossPlatformGroupID>
     <XnaOutputType>Library</XnaOutputType>
     <XnaRefreshLevel>1</XnaRefreshLevel>
   </PropertyGroup>
@@ -42,24 +41,26 @@
     <XnaCompressContent>false</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework" />
-    <Reference Include="Microsoft.Xna.Framework.Game" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics" />
-    <Reference Include="Microsoft.Xna.Framework.GamerServices" />
-    <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Net" />
+    <Reference Include="Microsoft.Xna.Framework"/>
+    <Reference Include="Microsoft.Xna.Framework.Game"/>
+    <Reference Include="Microsoft.Xna.Framework.Graphics"/>
+    <Reference Include="Microsoft.Xna.Framework.GamerServices"/>
+    <Reference Include="Microsoft.Xna.Framework.Input.Touch"/>
+    <Reference Include="mscorlib"/>
+    <Reference Include="System"/>
+    <Reference Include="System.Xml"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Xml.Linq"/>
+    <Reference Include="System.Net"/>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mygameLibContent\mygameLibContent.contentproj">
+      <Name>mygameLibContent</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
