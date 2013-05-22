@@ -12,9 +12,7 @@
 
     <Application.ApplicationLifetimeObjects>
         <!--必需的对象，用于处理应用程序的生存时间事件-->
-        <shell:PhoneApplicationService 
-            Launching="Application_Launching" Closing="Application_Closing" 
-            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+        <shell:PhoneApplicationService />
         
         <!--SharedGraphicsDeviceManager 用于通过 XNA 图形 API 进行呈现-->
         <xna:SharedGraphicsDeviceManager />
