@@ -58,7 +58,10 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".class\resource\Resource.cs" />
+    <Compile Include=".class\resource\ResourceManager.cs" />
     <Compile Include=".class\World.cs" />
+    <Compile Include=".interface\IMountable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

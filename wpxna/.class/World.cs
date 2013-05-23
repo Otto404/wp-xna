@@ -1,4 +1,5 @@
-#define T1
+//#define T1
+#define T2
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -8,6 +9,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace zoyobar.game
 {
@@ -72,6 +74,10 @@ namespace zoyobar.game
 		private SpriteFont myfont;
 #endif
 
+#if T2
+		private readonly ResourceManager resourceManager;
+#endif
+
 		public World ( )
 			: this ( Color.Black )
 		{ }
@@ -89,6 +95,15 @@ namespace zoyobar.game
 
 			PhoneApplicationService.Current.Activated += this.activate;
 			PhoneApplicationService.Current.Deactivated += this.deactivate;
+
+#if T2
+			this.resourceManager = new ResourceManager ( new Resource[] {
+				new Resource ( "bird", ResourceType.Image, @"image\bird" ),
+				new Resource ( "click", ResourceType.Sound, @"sound\click" )
+			} );
+			this.resourceManager.World = this;
+#endif
+
 		}
 
 		private void activate ( object sender, ActivatedEventArgs e )
@@ -110,11 +125,19 @@ namespace zoyobar.game
 			this.myfont = content.Load<SpriteFont> ( @"font\myfont" );
 #endif
 
+#if T2
+			this.resourceManager.LoadContent ( );
+#endif
+
 			base.OnNavigatedTo ( e );
 		}
 
 		private void OnUpdate ( object sender, GameTimerEventArgs e )
-		{ }
+		{
+#if T2
+			this.resourceManager.GetSound ( "click" ).Play ( );
+#endif
+		}
 
 		private void OnDraw ( object sender, GameTimerEventArgs e )
 		{
@@ -125,6 +148,13 @@ namespace zoyobar.game
 			this.spiritBatch.DrawString ( this.myfont, "Hello!", new Vector2 ( 10, 10 ), Color.White );
 			this.spiritBatch.End ( );
 #endif
+
+#if T2
+			this.spiritBatch.Begin ( );
+			this.spiritBatch.Draw ( this.resourceManager.GetTexture ( "bird" ), new Vector2 ( 20, 20 ), Color.White );
+			this.spiritBatch.End ( );
+#endif
+
 		}
 
 	}
