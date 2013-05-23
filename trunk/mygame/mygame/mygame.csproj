@@ -62,8 +62,17 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\wpxna\.class\resource\Resource.cs">
+      <Link>.class\resource\Resource.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\resource\ResourceManager.cs">
+      <Link>.class\resource\ResourceManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\World.cs">
       <Link>.class\World.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.interface\IMountable.cs">
+      <Link>.interface\IMountable.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
