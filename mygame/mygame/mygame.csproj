@@ -62,6 +62,12 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\wpxna\.class\making\Making.cs">
+      <Link>.class\making\Making.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\making\Shape.cs">
+      <Link>.class\making\Shape.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\resource\Resource.cs">
       <Link>.class\resource\Resource.cs</Link>
     </Compile>

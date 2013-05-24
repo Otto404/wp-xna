@@ -58,6 +58,8 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".class\making\Making.cs" />
+    <Compile Include=".class\making\Shape.cs" />
     <Compile Include=".class\resource\Resource.cs" />
     <Compile Include=".class\resource\ResourceManager.cs" />
     <Compile Include=".class\World.cs" />

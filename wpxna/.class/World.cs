@@ -1,5 +1,6 @@
 //#define T1
-#define T2
+//#define T2
+#define T3
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -18,6 +19,16 @@ namespace zoyobar.game
 	public partial class World
 		: PhoneApplicationPage
 	{
+
+		internal static float TextureXScale = 1;
+		internal static float TextureYScale = 1;
+		internal static Vector2 TextureScale = new Vector2 ( TextureXScale, TextureYScale );
+
+		internal static float XScale = 1;
+		internal static float YScale = 1;
+		internal static Vector2 Scale = new Vector2 ( XScale, YScale );
+		internal static Vector2 FlipScale = new Vector2 ( YScale, XScale );
+
 		private SpriteBatch spiritBatch;
 		internal readonly Color BackgroundColor;
 
@@ -78,6 +89,11 @@ namespace zoyobar.game
 		private readonly ResourceManager resourceManager;
 #endif
 
+#if T3
+		private readonly ResourceManager resourceManager;
+		private readonly Shape birdShape;
+#endif
+
 		public World ( )
 			: this ( Color.Black )
 		{ }
@@ -102,6 +118,24 @@ namespace zoyobar.game
 				new Resource ( "click", ResourceType.Sound, @"sound\click" )
 			} );
 			this.resourceManager.World = this;
+#endif
+
+#if T3
+			this.resourceManager = new ResourceManager ( new Resource[] {
+				new Resource ( "bird", ResourceType.Image, @"image\bird" )
+			} );
+			this.resourceManager.World = this;
+
+			this.birdShape = new Shape ( "shape.bird", "bird", new Vector2 ( 50, 50 ) );
+
+			TextureXScale = 0.5f;
+			TextureYScale = 0.5f;
+			TextureScale = new Vector2 ( TextureXScale, TextureYScale );
+
+			XScale = 0.5f;
+			YScale = 0.5f;
+			Scale = new Vector2 ( XScale, YScale );
+			FlipScale = new Vector2 ( YScale, XScale );
 #endif
 
 		}
@@ -129,14 +163,26 @@ namespace zoyobar.game
 			this.resourceManager.LoadContent ( );
 #endif
 
+#if T3
+			this.resourceManager.LoadContent ( );
+
+			this.birdShape.InitResource ( this.resourceManager );
+#endif
+
 			base.OnNavigatedTo ( e );
 		}
 
 		private void OnUpdate ( object sender, GameTimerEventArgs e )
 		{
+
 #if T2
 			this.resourceManager.GetSound ( "click" ).Play ( );
 #endif
+
+#if T3
+			this.birdShape.Location += new Vector2 ( 1f, 1f );
+#endif
+
 		}
 
 		private void OnDraw ( object sender, GameTimerEventArgs e )
@@ -155,6 +201,11 @@ namespace zoyobar.game
 			this.spiritBatch.End ( );
 #endif
 
+#if T3
+			this.spiritBatch.Begin ( );
+			Shape.Draw ( this.birdShape, new GameTime ( e.TotalTime, e.ElapsedTime ), this.spiritBatch );
+			this.spiritBatch.End ( );
+#endif
 		}
 
 	}
