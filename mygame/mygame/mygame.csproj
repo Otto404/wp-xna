@@ -62,8 +62,20 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\wpxna\.class\Calculator.cs">
+      <Link>.class\Calculator.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\making\Making.cs">
       <Link>.class\making\Making.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\making\movie\Movie.cs">
+      <Link>.class\making\movie\Movie.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\making\movie\MovieEventArgs.cs">
+      <Link>.class\making\movie\MovieEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\making\movie\MovieSequence.cs">
+      <Link>.class\making\movie\MovieSequence.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.class\making\Shape.cs">
       <Link>.class\making\Shape.cs</Link>

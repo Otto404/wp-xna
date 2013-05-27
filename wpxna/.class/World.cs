@@ -1,16 +1,17 @@
 //#define T1
 //#define T2
-#define T3
+//#define T3
+#define T4
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
+using Point = Microsoft.Xna.Framework.Point;
 
 namespace zoyobar.game
 {
@@ -94,12 +95,20 @@ namespace zoyobar.game
 		private readonly Shape birdShape;
 #endif
 
+#if T4
+		private readonly ResourceManager resourceManager;
+		private readonly Movie bird2;
+		private int bird2Angle = 0;
+#endif
+
 		public World ( )
 			: this ( Color.Black )
 		{ }
 		public World ( Color backgroundColor )
 			: base ( )
 		{
+			Calculator.Init ( );
+
 			SharedGraphicsDeviceManager graph = SharedGraphicsDeviceManager.Current;
 			this.GraphicsDevice = graph.GraphicsDevice;
 
@@ -138,7 +147,26 @@ namespace zoyobar.game
 			FlipScale = new Vector2 ( YScale, XScale );
 #endif
 
+#if T4
+			this.resourceManager = new ResourceManager ( new Resource[] {
+				new Resource ( "bird2.image", ResourceType.Image, @"image\bird2" )
+			} );
+			this.resourceManager.World = this;
+
+			this.bird2 = new Movie ( "bird2.m", "bird2.image", new Vector2 ( 200, 200 ), 80, 80, 3, 0, "live",
+				new MovieSequence ( "live", true, new Point ( 1, 1 ), new Point ( 2, 1 ) ),
+				new MovieSequence ( "dead", 30, false, new Point ( 3, 1 ), new Point ( 4, 1 ) )
+				);
+			this.bird2.Ended += this.bird2MovieEnded;
+#endif
 		}
+
+#if T4
+		private void bird2MovieEnded ( object sender, MovieEventArgs e )
+		{
+			Debug.WriteLine ( "bird2MovieEnded: e.SequenceName=" + e.SequenceName );
+		}
+#endif
 
 		private void activate ( object sender, ActivatedEventArgs e )
 		{ }
@@ -169,7 +197,22 @@ namespace zoyobar.game
 			this.birdShape.InitResource ( this.resourceManager );
 #endif
 
+#if T4
+			this.resourceManager.LoadContent ( );
+			this.bird2.InitResource ( this.resourceManager );
+#endif
+
 			base.OnNavigatedTo ( e );
+		}
+
+		protected override void OnNavigatedFrom ( NavigationEventArgs e )
+		{
+
+#if T4
+			this.bird2.Ended -= this.bird2MovieEnded;
+#endif
+
+			base.OnNavigatedFrom ( e );
 		}
 
 		private void OnUpdate ( object sender, GameTimerEventArgs e )
@@ -183,6 +226,15 @@ namespace zoyobar.game
 			this.birdShape.Location += new Vector2 ( 1f, 1f );
 #endif
 
+#if T4
+			Movie.NextFrame ( this.bird2 );
+
+			this.bird2.Rotation = this.bird2Angle++;
+
+			if ( e.TotalTime.TotalSeconds > 5 && this.bird2.CurrentSequenceName == "live" )
+				Movie.Play ( this.bird2, "dead" );
+
+#endif
 		}
 
 		private void OnDraw ( object sender, GameTimerEventArgs e )
@@ -204,6 +256,12 @@ namespace zoyobar.game
 #if T3
 			this.spiritBatch.Begin ( );
 			Shape.Draw ( this.birdShape, new GameTime ( e.TotalTime, e.ElapsedTime ), this.spiritBatch );
+			this.spiritBatch.End ( );
+#endif
+
+#if T4
+			this.spiritBatch.Begin ( );
+			Movie.Draw ( this.bird2, new GameTime ( e.TotalTime, e.ElapsedTime ), this.spiritBatch );
 			this.spiritBatch.End ( );
 #endif
 		}
