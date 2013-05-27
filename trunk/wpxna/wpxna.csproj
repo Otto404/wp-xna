@@ -58,7 +58,11 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".class\Calculator.cs" />
     <Compile Include=".class\making\Making.cs" />
+    <Compile Include=".class\making\movie\Movie.cs" />
+    <Compile Include=".class\making\movie\MovieEventArgs.cs" />
+    <Compile Include=".class\making\movie\MovieSequence.cs" />
     <Compile Include=".class\making\Shape.cs" />
     <Compile Include=".class\resource\Resource.cs" />
     <Compile Include=".class\resource\ResourceManager.cs" />
