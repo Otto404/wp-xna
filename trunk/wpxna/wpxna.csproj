@@ -58,6 +58,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".class\AudioManager.cs" />
     <Compile Include=".class\Calculator.cs" />
     <Compile Include=".class\making\Making.cs" />
     <Compile Include=".class\making\movie\Movie.cs" />
