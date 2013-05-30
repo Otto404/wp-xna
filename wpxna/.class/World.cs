@@ -1,7 +1,8 @@
 //#define T1
 //#define T2
 //#define T3
-#define T4
+//#define T4
+#define T5
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -101,6 +102,12 @@ namespace zoyobar.game
 		private int bird2Angle = 0;
 #endif
 
+#if T5
+		private readonly ResourceManager resourceManager;
+		private readonly AudioManager audioManager;
+		private int step = 1;
+#endif
+
 		public World ( )
 			: this ( Color.Black )
 		{ }
@@ -159,6 +166,16 @@ namespace zoyobar.game
 				);
 			this.bird2.Ended += this.bird2MovieEnded;
 #endif
+
+#if T5
+			this.resourceManager = new ResourceManager ( new Resource[] {
+				new Resource ( "click.s", ResourceType.Sound, @"sound\click" ),
+				new Resource ( "music1", ResourceType.Music, @"sound\music1" )
+			} );
+			this.resourceManager.World = this;
+
+			this.audioManager = new AudioManager ( );
+#endif
 		}
 
 #if T4
@@ -202,6 +219,10 @@ namespace zoyobar.game
 			this.bird2.InitResource ( this.resourceManager );
 #endif
 
+#if T5
+			this.resourceManager.LoadContent ( );
+			this.audioManager.LoadContent ( this.resourceManager );
+#endif
 			base.OnNavigatedTo ( e );
 		}
 
@@ -233,6 +254,18 @@ namespace zoyobar.game
 
 			if ( e.TotalTime.TotalSeconds > 5 && this.bird2.CurrentSequenceName == "live" )
 				Movie.Play ( this.bird2, "dead" );
+
+#endif
+
+#if T5
+			this.step++;
+
+			if ( this.step <= 60 )
+				this.audioManager.PlaySound ( "click.s" );
+			else if ( this.step == 61 )
+				this.audioManager.PlayMusic ( "music1" );
+			else if ( this.step == 300 )
+				this.audioManager.StopMusic ( );
 
 #endif
 		}

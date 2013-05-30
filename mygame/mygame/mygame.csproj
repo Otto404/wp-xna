@@ -62,6 +62,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\wpxna\.class\AudioManager.cs">
+      <Link>.class\AudioManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\Calculator.cs">
       <Link>.class\Calculator.cs</Link>
     </Compile>
