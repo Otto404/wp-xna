@@ -60,6 +60,10 @@
   <ItemGroup>
     <Compile Include=".class\AudioManager.cs" />
     <Compile Include=".class\Calculator.cs" />
+    <Compile Include=".class\hit\HitArea.cs" />
+    <Compile Include=".class\hit\HitAreaEventArgs.cs" />
+    <Compile Include=".class\hit\MultiRectangleHitArea.cs" />
+    <Compile Include=".class\hit\SingleRectangleHitArea.cs" />
     <Compile Include=".class\making\Making.cs" />
     <Compile Include=".class\making\movie\Movie.cs" />
     <Compile Include=".class\making\movie\MovieEventArgs.cs" />

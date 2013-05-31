@@ -2,7 +2,7 @@
 //#define T2
 //#define T3
 //#define T4
-#define T5
+//#define T5
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -83,6 +83,7 @@ namespace zoyobar.game
 
 		private readonly GameTimer timer = new GameTimer ( );
 
+		#region " Example "
 #if T1
 		private SpriteFont myfont;
 #endif
@@ -107,6 +108,7 @@ namespace zoyobar.game
 		private readonly AudioManager audioManager;
 		private int step = 1;
 #endif
+		#endregion
 
 		public World ( )
 			: this ( Color.Black )
@@ -128,6 +130,7 @@ namespace zoyobar.game
 			PhoneApplicationService.Current.Activated += this.activate;
 			PhoneApplicationService.Current.Deactivated += this.deactivate;
 
+			#region " Example "
 #if T2
 			this.resourceManager = new ResourceManager ( new Resource[] {
 				new Resource ( "bird", ResourceType.Image, @"image\bird" ),
@@ -176,14 +179,17 @@ namespace zoyobar.game
 
 			this.audioManager = new AudioManager ( );
 #endif
+			#endregion
 		}
 
+		#region " Example "
 #if T4
 		private void bird2MovieEnded ( object sender, MovieEventArgs e )
 		{
 			Debug.WriteLine ( "bird2MovieEnded: e.SequenceName=" + e.SequenceName );
 		}
 #endif
+		#endregion
 
 		private void activate ( object sender, ActivatedEventArgs e )
 		{ }
@@ -199,6 +205,7 @@ namespace zoyobar.game
 			
 			this.timer.Start ( );
 
+			#region " Example "
 #if T1
 			ContentManager content = new ContentManager ( this.Services, "Content" );
 			this.myfont = content.Load<SpriteFont> ( @"font\myfont" );
@@ -223,15 +230,19 @@ namespace zoyobar.game
 			this.resourceManager.LoadContent ( );
 			this.audioManager.LoadContent ( this.resourceManager );
 #endif
+			#endregion
+
 			base.OnNavigatedTo ( e );
 		}
 
 		protected override void OnNavigatedFrom ( NavigationEventArgs e )
 		{
 
+			#region " Example "
 #if T4
 			this.bird2.Ended -= this.bird2MovieEnded;
 #endif
+			#endregion
 
 			base.OnNavigatedFrom ( e );
 		}
@@ -239,6 +250,7 @@ namespace zoyobar.game
 		private void OnUpdate ( object sender, GameTimerEventArgs e )
 		{
 
+			#region " Example "
 #if T2
 			this.resourceManager.GetSound ( "click" ).Play ( );
 #endif
@@ -268,12 +280,14 @@ namespace zoyobar.game
 				this.audioManager.StopMusic ( );
 
 #endif
+			#endregion
 		}
 
 		private void OnDraw ( object sender, GameTimerEventArgs e )
 		{
 			this.GraphicsDevice.Clear ( this.BackgroundColor );
 
+			#region " Example "
 #if T1
 			this.spiritBatch.Begin ( );
 			this.spiritBatch.DrawString ( this.myfont, "Hello!", new Vector2 ( 10, 10 ), Color.White );
@@ -297,6 +311,7 @@ namespace zoyobar.game
 			Movie.Draw ( this.bird2, new GameTime ( e.TotalTime, e.ElapsedTime ), this.spiritBatch );
 			this.spiritBatch.End ( );
 #endif
+			#endregion
 		}
 
 	}
