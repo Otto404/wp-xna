@@ -68,6 +68,18 @@
     <Compile Include="..\..\wpxna\.class\Calculator.cs">
       <Link>.class\Calculator.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\hit\HitArea.cs">
+      <Link>.class\hit\HitArea.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\hit\HitAreaEventArgs.cs">
+      <Link>.class\hit\HitAreaEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\hit\MultiRectangleHitArea.cs">
+      <Link>.class\hit\MultiRectangleHitArea.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\hit\SingleRectangleHitArea.cs">
+      <Link>.class\hit\SingleRectangleHitArea.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\making\Making.cs">
       <Link>.class\making\Making.cs</Link>
     </Compile>

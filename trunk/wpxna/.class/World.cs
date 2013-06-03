@@ -3,6 +3,7 @@
 //#define T3
 //#define T4
 //#define T5
+#define T6
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -108,6 +109,12 @@ namespace zoyobar.game
 		private readonly AudioManager audioManager;
 		private int step = 1;
 #endif
+
+#if T6
+		private readonly SingleRectangleHitArea hitArea1;
+		private readonly SingleRectangleHitArea hitArea2;
+		private int step = 1;
+#endif
 		#endregion
 
 		public World ( )
@@ -178,6 +185,11 @@ namespace zoyobar.game
 			this.resourceManager.World = this;
 
 			this.audioManager = new AudioManager ( );
+#endif
+
+#if T6
+			this.hitArea1 = new SingleRectangleHitArea ( new Rectangle ( 0, 0, 100, 100 ) );
+			this.hitArea2 = new SingleRectangleHitArea ( new Rectangle ( 200, 200, 100, 100 ) );
 #endif
 			#endregion
 		}
@@ -278,6 +290,21 @@ namespace zoyobar.game
 				this.audioManager.PlayMusic ( "music1" );
 			else if ( this.step == 300 )
 				this.audioManager.StopMusic ( );
+
+#endif
+
+#if T6
+			this.step++;
+
+			if ( this.step == 10 )
+				Debug.WriteLine ( "Hit? {0}", this.hitArea1.HitTest ( this.hitArea2 ) );
+			else if ( this.step == 20 )
+			{
+				this.hitArea1.Locate ( new Point ( 150, 150 ) );
+				Debug.WriteLine ( "Hit? {0}", this.hitArea1.HitTest ( this.hitArea2 ) );
+			}
+			else if ( this.step == 30 )
+				Debug.WriteLine ( "Hit? {0}", this.hitArea1.ContainTest ( 200, 200 ) );
 
 #endif
 			#endregion
