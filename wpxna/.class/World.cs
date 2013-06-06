@@ -3,7 +3,8 @@
 //#define T3
 //#define T4
 //#define T5
-#define T6
+//#define T6
+#define T7
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -115,6 +116,12 @@ namespace zoyobar.game
 		private readonly SingleRectangleHitArea hitArea2;
 		private int step = 1;
 #endif
+
+#if T7
+		private readonly ResourceManager resourceManager;
+		private readonly Label label1;
+		private readonly Label label2;
+#endif
 		#endregion
 
 		public World ( )
@@ -191,6 +198,16 @@ namespace zoyobar.game
 			this.hitArea1 = new SingleRectangleHitArea ( new Rectangle ( 0, 0, 100, 100 ) );
 			this.hitArea2 = new SingleRectangleHitArea ( new Rectangle ( 200, 200, 100, 100 ) );
 #endif
+
+#if T7
+			this.resourceManager = new ResourceManager ( new Resource[] {
+				new Resource ( "peg", ResourceType.Font, @"font\myfont" )
+			} );
+			this.resourceManager.World = this;
+
+			this.label1 = new Label ( "l1", "Hello windows phone!", 2f, Color.LightGreen, 0f );
+			this.label2 = new Label ( "l2", "peg", "Nothing!", new Vector2 ( 50, 300 ), 0, 0, 1f, Color.White, -0.01f, 1f, -90 );
+#endif
 			#endregion
 		}
 
@@ -241,6 +258,12 @@ namespace zoyobar.game
 #if T5
 			this.resourceManager.LoadContent ( );
 			this.audioManager.LoadContent ( this.resourceManager );
+#endif
+
+#if T7
+			this.resourceManager.LoadContent ( );
+			this.label1.InitResource ( this.resourceManager );
+			this.label2.InitResource ( this.resourceManager );
 #endif
 			#endregion
 
@@ -307,6 +330,10 @@ namespace zoyobar.game
 				Debug.WriteLine ( "Hit? {0}", this.hitArea1.ContainTest ( 200, 200 ) );
 
 #endif
+
+#if T7
+			this.label2.Text = e.TotalTime.ToString ( );
+#endif
 			#endregion
 		}
 
@@ -336,6 +363,13 @@ namespace zoyobar.game
 #if T4
 			this.spiritBatch.Begin ( );
 			Movie.Draw ( this.bird2, new GameTime ( e.TotalTime, e.ElapsedTime ), this.spiritBatch );
+			this.spiritBatch.End ( );
+#endif
+
+#if T7
+			this.spiritBatch.Begin ( );
+			Label.Draw ( this.label1, this.spiritBatch );
+			Label.Draw ( this.label2, this.spiritBatch );
 			this.spiritBatch.End ( );
 #endif
 			#endregion
