@@ -80,6 +80,9 @@
     <Compile Include="..\..\wpxna\.class\hit\SingleRectangleHitArea.cs">
       <Link>.class\hit\SingleRectangleHitArea.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\making\label\Label.cs">
+      <Link>.class\making\label\Label.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\making\Making.cs">
       <Link>.class\making\Making.cs</Link>
     </Compile>
@@ -104,8 +107,14 @@
     <Compile Include="..\..\wpxna\.class\World.cs">
       <Link>.class\World.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.interface\ILockable.cs">
+      <Link>.interface\ILockable.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.interface\IMountable.cs">
       <Link>.interface\IMountable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.interface\ISpirit.cs">
+      <Link>.interface\ISpirit.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -145,6 +154,7 @@
       <Name>mygameLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
