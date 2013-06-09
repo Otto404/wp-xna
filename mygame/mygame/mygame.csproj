@@ -80,6 +80,12 @@
     <Compile Include="..\..\wpxna\.class\hit\SingleRectangleHitArea.cs">
       <Link>.class\hit\SingleRectangleHitArea.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\input\Controller.cs">
+      <Link>.class\input\Controller.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\input\Motion.cs">
+      <Link>.class\input\Motion.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\making\label\Label.cs">
       <Link>.class\making\label\Label.cs</Link>
     </Compile>
@@ -106,6 +112,9 @@
     </Compile>
     <Compile Include="..\..\wpxna\.class\World.cs">
       <Link>.class\World.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.enum\MotionType.cs">
+      <Link>.enum\MotionType.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.interface\ILockable.cs">
       <Link>.interface\ILockable.cs</Link>
