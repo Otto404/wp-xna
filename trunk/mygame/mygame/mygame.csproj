@@ -110,17 +110,29 @@
     <Compile Include="..\..\wpxna\.class\resource\ResourceManager.cs">
       <Link>.class\resource\ResourceManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\scene\Scene.cs">
+      <Link>.class\scene\Scene.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\scene\SceneEventArgs.cs">
+      <Link>.class\scene\SceneEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\World.cs">
       <Link>.class\World.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.enum\MotionType.cs">
       <Link>.enum\MotionType.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.interface\IHandleable.cs">
+      <Link>.interface\IHandleable.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.interface\ILockable.cs">
       <Link>.interface\ILockable.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.interface\IMountable.cs">
       <Link>.interface\IMountable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.interface\IScene.cs">
+      <Link>.interface\IScene.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.interface\ISpirit.cs">
       <Link>.interface\ISpirit.cs</Link>
@@ -129,6 +141,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test\SceneT9.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>
