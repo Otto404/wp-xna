@@ -4,7 +4,9 @@
 //#define T4
 //#define T5
 //#define T6
-#define T7
+//#define T7
+//#define T8
+#define T9
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +16,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 using Point = Microsoft.Xna.Framework.Point;
 
 namespace zoyobar.game
@@ -83,7 +86,13 @@ namespace zoyobar.game
 		internal readonly ServiceProvider Services = new ServiceProvider ( Application.Current );
 		internal readonly GraphicsDevice GraphicsDevice;
 
+		private readonly Controller controller;
+		private bool isInitialized = false;
+		private readonly List<Scene> scenes = new List<Scene> ( );
+
 		private readonly GameTimer timer = new GameTimer ( );
+
+		private bool isPreserved = false;
 
 		#region " Example "
 #if T1
@@ -130,6 +139,8 @@ namespace zoyobar.game
 		public World ( Color backgroundColor )
 			: base ( )
 		{
+			this.controller = new Controller ( );
+
 			Calculator.Init ( );
 
 			SharedGraphicsDeviceManager graph = SharedGraphicsDeviceManager.Current;
@@ -140,6 +151,8 @@ namespace zoyobar.game
 			this.timer.Draw += this.OnDraw;
 
 			this.BackgroundColor = backgroundColor;
+
+			TouchPanel.EnabledGestures = GestureType.None;
 
 			PhoneApplicationService.Current.Activated += this.activate;
 			PhoneApplicationService.Current.Deactivated += this.deactivate;
@@ -221,17 +234,25 @@ namespace zoyobar.game
 		#endregion
 
 		private void activate ( object sender, ActivatedEventArgs e )
-		{ }
+		{ this.isPreserved = e.IsApplicationInstancePreserved; }
 
 		private void deactivate ( object sender, DeactivatedEventArgs e )
 		{ }
 
 		protected override void OnNavigatedTo ( NavigationEventArgs e )
 		{
+
+			if ( this.isPreserved )
+				return;
+
 			SharedGraphicsDeviceManager.Current.GraphicsDevice.SetSharingMode ( true );
 			this.spiritBatch = new SpriteBatch ( this.GraphicsDevice );
 			this.Services.AddService ( typeof ( SpriteBatch ), this.spiritBatch );
-			
+			this.isInitialized = true;
+
+			foreach ( Scene scene in this.scenes )
+				scene.LoadContent ( );
+
 			this.timer.Start ( );
 
 			#region " Example "
@@ -265,6 +286,10 @@ namespace zoyobar.game
 			this.label1.InitResource ( this.resourceManager );
 			this.label2.InitResource ( this.resourceManager );
 #endif
+
+#if T9
+			this.appendScene ( new mygame.test.SceneT9 ( ), null, false );
+#endif
 			#endregion
 
 			base.OnNavigatedTo ( e );
@@ -284,6 +309,22 @@ namespace zoyobar.game
 
 		private void OnUpdate ( object sender, GameTimerEventArgs e )
 		{
+
+			if ( !this.IsEnabled )
+				return;
+
+			this.controller.Update ( );
+
+			Scene[] scenes = this.scenes.ToArray ( );
+			GameTime time = new GameTime ( e.TotalTime, e.ElapsedTime );
+
+			foreach ( Scene scene in scenes )
+				if ( null != scene )
+					scene.Update ( time );
+
+			for ( int index = scenes.Length - 1; index >= 0; index-- )
+				if ( null != scenes[ index ] && scenes[ index ].Input ( this.controller ) )
+					break;
 
 			#region " Example "
 #if T2
@@ -334,12 +375,55 @@ namespace zoyobar.game
 #if T7
 			this.label2.Text = e.TotalTime.ToString ( );
 #endif
+
+#if T8
+
+			if ( !this.controller.IsGestureEmpty )
+			{
+				Debug.WriteLine ( "Gestures {0}", this.controller.Gestures.Count );
+
+				foreach ( GestureSample gesture in this.controller.Gestures )
+					Debug.WriteLine ( "Gesture {0}, {1}, {2}, {3}", gesture.Position, gesture.Position2, gesture.Delta, gesture.Delta2 );
+
+			}
+
+			if ( !this.controller.IsMotionEmpty )
+			{
+
+				Debug.WriteLine ( "Motions {0}", this.controller.Motions.Count );
+
+				foreach ( Motion motion in this.controller.Motions )
+					Debug.WriteLine ( "Motion {0}, {1}, {2}", motion.Position, motion.Offset, motion.Type );
+
+			}
+
+#endif
 			#endregion
 		}
 
 		private void OnDraw ( object sender, GameTimerEventArgs e )
 		{
 			this.GraphicsDevice.Clear ( this.BackgroundColor );
+
+			bool isBroken = false;
+			GameTime time = new GameTime ( e.TotalTime, e.ElapsedTime );
+
+			foreach ( Scene scene in this.scenes.ToArray ( ) )
+				if ( null != scene )
+				{
+
+					if ( !isBroken && scene.IsBroken )
+					{
+						// Draw sprites
+						isBroken = true;
+					}
+
+					scene.Draw ( time );
+				}
+
+			if ( !isBroken )
+				// Draw sprites.
+				;
 
 			#region " Example "
 #if T1
@@ -373,6 +457,85 @@ namespace zoyobar.game
 			this.spiritBatch.End ( );
 #endif
 			#endregion
+		}
+
+		private void appendScene ( Scene scene, Type afterSceneType, bool isInitialized )
+		{
+
+			if ( null == scene )
+				return;
+
+			//this.sceneAppending ( scene );
+
+			if ( !isInitialized )
+			{
+				scene.World = this;
+				scene.IsClosed = false;
+
+				if ( this.isInitialized )
+					scene.LoadContent ( );
+
+			}
+
+			int index = this.getSceneIndex ( afterSceneType );
+
+			if ( index < 0 )
+				this.scenes.Add ( scene );
+			else
+				this.scenes.Insert ( index, scene );
+
+			TouchPanel.EnabledGestures = scene.GestureType;
+		}
+
+		internal void RemoveScene ( Scene scene )
+		{
+
+			if ( null == scene || !this.scenes.Contains ( scene ) )
+				return;
+
+			//this.sceneRemoving ( scene );
+
+			scene.IsClosed = true;
+
+			if ( this.isInitialized )
+				try
+				{
+
+					if ( null != scene )
+						scene.Dispose ( );
+
+				}
+				catch
+				{ scene.Dispose ( ); }
+
+			this.scenes.Remove ( scene );
+
+			if ( this.scenes.Count > 0 )
+				TouchPanel.EnabledGestures = this.scenes[ this.scenes.Count - 1 ].GestureType;
+
+		}
+
+		private int getSceneIndex ( Type sceneType )
+		{
+
+			if ( null == sceneType )
+				return -1;
+
+			string type = sceneType.ToString ( );
+
+			for ( int index = this.scenes.Count - 1; index >= 0; index-- )
+				if ( this.scenes[ index ].GetType ( ).ToString ( ) == type )
+					return index;
+
+			return -1;
+		}
+
+		private T getScene<T> ( )
+			where T : Scene
+		{
+			int index = this.getSceneIndex ( typeof ( T ) );
+
+			return index == -1 ? null : this.scenes[ index ] as T;
 		}
 
 	}

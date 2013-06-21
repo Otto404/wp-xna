@@ -76,12 +76,16 @@
     <Compile Include=".class\making\Shape.cs" />
     <Compile Include=".class\resource\Resource.cs" />
     <Compile Include=".class\resource\ResourceManager.cs" />
+    <Compile Include=".class\scene\Scene.cs" />
+    <Compile Include=".class\scene\SceneEventArgs.cs" />
     <Compile Include=".class\spirit\Spirit.cs" />
     <Compile Include=".class\spirit\SpiritEventArgs.cs" />
     <Compile Include=".class\World.cs" />
     <Compile Include=".enum\MotionType.cs" />
+    <Compile Include=".interface\IHandleable.cs" />
     <Compile Include=".interface\ILockable.cs" />
     <Compile Include=".interface\IMountable.cs" />
+    <Compile Include=".interface\IScene.cs" />
     <Compile Include=".interface\ISpirit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
