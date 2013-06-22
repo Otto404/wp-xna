@@ -6,7 +6,8 @@
 //#define T6
 //#define T7
 //#define T8
-#define T9
+//#define T9
+#define T10
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -289,6 +290,10 @@ namespace zoyobar.game
 
 #if T9
 			this.appendScene ( new mygame.test.SceneT9 ( ), null, false );
+#endif
+
+#if T10
+			this.appendScene ( new mygame.test.SceneT10 ( ), null, false );
 #endif
 			#endregion
 

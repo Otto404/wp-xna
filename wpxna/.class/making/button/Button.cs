@@ -24,6 +24,7 @@ namespace zoyobar.game
 
 		internal static void Unpress ( Button button )
 		{
+
 			if ( !button.IsPressing )
 				return;
 
