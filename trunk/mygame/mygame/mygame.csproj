@@ -98,6 +98,15 @@
     <Compile Include="..\..\wpxna\.class\making\Making.cs">
       <Link>.class\making\Making.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\making\movie\anime\Anime.cs">
+      <Link>.class\making\movie\anime\Anime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\making\movie\anime\AnimeAction.cs">
+      <Link>.class\making\movie\anime\AnimeAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\making\movie\anime\AnimeMovementAction.cs">
+      <Link>.class\making\movie\anime\AnimeMovementAction.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\making\movie\Movie.cs">
       <Link>.class\making\movie\Movie.cs</Link>
     </Compile>
@@ -116,11 +125,20 @@
     <Compile Include="..\..\wpxna\.class\resource\ResourceManager.cs">
       <Link>.class\resource\ResourceManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\scene\LoadingScene.cs">
+      <Link>.class\scene\LoadingScene.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\scene\Scene.cs">
       <Link>.class\scene\Scene.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.class\scene\SceneEventArgs.cs">
       <Link>.class\scene\SceneEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\scene\SceneLoader.cs">
+      <Link>.class\scene\SceneLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\scene\SceneLoaderEventArgs.cs">
+      <Link>.class\scene\SceneLoaderEventArgs.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.class\World.cs">
       <Link>.class\World.cs</Link>
@@ -149,6 +167,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test\SceneT9.cs" />
     <Compile Include="test\SceneT10.cs" />
+    <Compile Include="test\SceneT11.cs" />
+    <Compile Include="test\SceneT12.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>

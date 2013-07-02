@@ -7,7 +7,9 @@
 //#define T7
 //#define T8
 //#define T9
-#define T10
+//#define T10
+//#define T11
+#define T12
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,6 +38,18 @@ namespace zoyobar.game
 		internal static float YScale = 1;
 		internal static Vector2 Scale = new Vector2 ( XScale, YScale );
 		internal static Vector2 FlipScale = new Vector2 ( YScale, XScale );
+
+		private static int frameRate = 30;
+		internal static int FrameRate
+		{
+			get { return frameRate; }
+			set { frameRate = value <= 0 ? 30 : value; }
+		}
+
+		internal static long ToFrameCount ( double second )
+		{ return ( long ) ( second * World.FrameRate ); }
+		internal static long ToFrameCount ( float second )
+		{ return ( long ) ( second * World.FrameRate ); }
 
 		private SpriteBatch spiritBatch;
 		internal readonly Color BackgroundColor;
@@ -90,6 +104,9 @@ namespace zoyobar.game
 		private readonly Controller controller;
 		private bool isInitialized = false;
 		private readonly List<Scene> scenes = new List<Scene> ( );
+		private SceneLoader currentSceneLoader = null;
+
+		private readonly bool isVertical;
 
 		private readonly GameTimer timer = new GameTimer ( );
 
@@ -135,9 +152,9 @@ namespace zoyobar.game
 		#endregion
 
 		public World ( )
-			: this ( Color.Black )
+			: this ( Color.Black, false )
 		{ }
-		public World ( Color backgroundColor )
+		public World ( Color backgroundColor, bool isVertical )
 			: base ( )
 		{
 			this.controller = new Controller ( );
@@ -151,6 +168,7 @@ namespace zoyobar.game
 			this.timer.Update += this.OnUpdate;
 			this.timer.Draw += this.OnDraw;
 
+			this.isVertical = isVertical;
 			this.BackgroundColor = backgroundColor;
 
 			TouchPanel.EnabledGestures = GestureType.None;
@@ -294,6 +312,14 @@ namespace zoyobar.game
 
 #if T10
 			this.appendScene ( new mygame.test.SceneT10 ( ), null, false );
+#endif
+
+#if T11
+			this.appendScene ( new Scene[] { new mygame.test.SceneT11 ( ) } );
+#endif
+
+#if T12
+			this.appendScene ( new Scene[] { new mygame.test.SceneT12 ( ) } );
 #endif
 			#endregion
 
@@ -462,6 +488,49 @@ namespace zoyobar.game
 			this.spiritBatch.End ( );
 #endif
 			#endregion
+		}
+
+		private void sceneContentLoaded ( object sender, SceneLoaderEventArgs e )
+		{
+			( sender as LoadingScene ).Loaded -= this.sceneContentLoaded;
+
+			for ( int index = 0; index < e.Scenes.Count; index++ )
+			{
+				Type afterSceneType;
+
+				if ( null != e.AfterSceneTypes && index < e.AfterSceneTypes.Length )
+					afterSceneType = e.AfterSceneTypes[ index ];
+				else
+					afterSceneType = null;
+
+				this.appendScene ( e.Scenes[ index ], afterSceneType, true );
+			}
+
+			if ( null != this.currentSceneLoader )
+				this.currentSceneLoader.Dispose ( );
+
+			this.currentSceneLoader = null;
+		}
+
+		private void appendScene ( Scene[] scenes )
+		{ this.appendScene ( scenes, null, true ); }
+		private void appendScene ( Scene[] scenes, bool isVisible )
+		{ this.appendScene ( scenes, null, isVisible ); }
+		private void appendScene ( Scene[] scenes, Type[] afterSceneTypes, bool isVisible )
+		{ this.appendScene ( new SceneLoader ( this, scenes, afterSceneTypes ), isVisible ); }
+		private void appendScene ( SceneLoader loader )
+		{ this.appendScene ( loader, true ); }
+		private void appendScene ( SceneLoader loader, bool isVisible )
+		{
+
+			if ( null == loader || null != this.currentSceneLoader )
+				return;
+
+			this.currentSceneLoader = loader;
+
+			LoadingScene loadingScene = new LoadingScene ( loader, isVisible ? new Label ( "peg.f", "Loading...", 1.5f, this.isVertical ? -90 : 0 ) : null );
+			loadingScene.Loaded += this.sceneContentLoaded;
+			this.appendScene ( loadingScene, null, false );
 		}
 
 		private void appendScene ( Scene scene, Type afterSceneType, bool isInitialized )
