@@ -125,6 +125,9 @@
     <Compile Include="..\..\wpxna\.class\resource\ResourceManager.cs">
       <Link>.class\resource\ResourceManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\scene\CommandScene.cs">
+      <Link>.class\scene\CommandScene.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\scene\LoadingScene.cs">
       <Link>.class\scene\LoadingScene.cs</Link>
     </Compile>
@@ -169,6 +172,7 @@
     <Compile Include="test\SceneT10.cs" />
     <Compile Include="test\SceneT11.cs" />
     <Compile Include="test\SceneT12.cs" />
+    <Compile Include="test\SceneT13.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>

@@ -9,7 +9,8 @@
 //#define T9
 //#define T10
 //#define T11
-#define T12
+//#define T12
+#define T13
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -250,6 +251,13 @@ namespace zoyobar.game
 			Debug.WriteLine ( "bird2MovieEnded: e.SequenceName=" + e.SequenceName );
 		}
 #endif
+
+#if T13
+		private void sceneT13Executing ( object sender, SceneEventArgs e )
+		{
+			Debug.WriteLine ( "SceneT13: " + e.Command );
+		}
+#endif
 		#endregion
 
 		private void activate ( object sender, ActivatedEventArgs e )
@@ -320,6 +328,10 @@ namespace zoyobar.game
 
 #if T12
 			this.appendScene ( new Scene[] { new mygame.test.SceneT12 ( ) } );
+#endif
+
+#if T13
+			this.appendScene ( new Scene[] { new mygame.test.SceneT13 ( ) } );
 #endif
 			#endregion
 
@@ -539,7 +551,7 @@ namespace zoyobar.game
 			if ( null == scene )
 				return;
 
-			//this.sceneAppending ( scene );
+			this.sceneAppending ( scene );
 
 			if ( !isInitialized )
 			{
@@ -567,7 +579,7 @@ namespace zoyobar.game
 			if ( null == scene || !this.scenes.Contains ( scene ) )
 				return;
 
-			//this.sceneRemoving ( scene );
+			this.sceneRemoving ( scene );
 
 			scene.IsClosed = true;
 
@@ -610,6 +622,30 @@ namespace zoyobar.game
 			int index = this.getSceneIndex ( typeof ( T ) );
 
 			return index == -1 ? null : this.scenes[ index ] as T;
+		}
+
+		private void sceneAppending ( Scene scene )
+		{
+
+			#region " Example "
+#if T13
+			if ( scene is mygame.test.SceneT13 )
+				( scene as mygame.test.SceneT13 ).Executing += this.sceneT13Executing;
+#endif
+			#endregion
+
+		}
+		
+		private void sceneRemoving ( Scene scene )
+		{
+
+			#region " Example "
+#if T13
+			if ( scene is mygame.test.SceneT13 )
+				( scene as mygame.test.SceneT13 ).Executing -= this.sceneT13Executing;
+#endif
+			#endregion
+
 		}
 
 	}
