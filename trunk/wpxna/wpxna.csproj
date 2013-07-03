@@ -79,6 +79,7 @@
     <Compile Include=".class\making\Shape.cs" />
     <Compile Include=".class\resource\Resource.cs" />
     <Compile Include=".class\resource\ResourceManager.cs" />
+    <Compile Include=".class\scene\CommandScene.cs" />
     <Compile Include=".class\scene\LoadingScene.cs" />
     <Compile Include=".class\scene\Scene.cs" />
     <Compile Include=".class\scene\SceneEventArgs.cs" />
