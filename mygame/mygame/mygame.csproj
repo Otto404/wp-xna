@@ -143,8 +143,17 @@
     <Compile Include="..\..\wpxna\.class\scene\SceneLoaderEventArgs.cs">
       <Link>.class\scene\SceneLoaderEventArgs.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\Spirit.cs">
+      <Link>.class\spirit\Spirit.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\SpiritEventArgs.cs">
+      <Link>.class\spirit\SpiritEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\World.cs">
       <Link>.class\World.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.enum\DirectionType.cs">
+      <Link>.enum\DirectionType.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.enum\MotionType.cs">
       <Link>.enum\MotionType.cs</Link>
@@ -173,6 +182,7 @@
     <Compile Include="test\SceneT11.cs" />
     <Compile Include="test\SceneT12.cs" />
     <Compile Include="test\SceneT13.cs" />
+    <Compile Include="test\SceneT14.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>

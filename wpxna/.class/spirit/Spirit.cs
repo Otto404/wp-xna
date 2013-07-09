@@ -11,6 +11,8 @@ namespace zoyobar.game
 		internal event EventHandler<SpiritEventArgs> Destroyed;
 		internal event EventHandler<SpiritEventArgs> DrawOrderChanged;
 
+		//protected readonly IPlayScene scene;
+		protected readonly IScene scene;
 		private readonly World world;
 		protected readonly AudioManager audioManager;
 
@@ -106,10 +108,7 @@ namespace zoyobar.game
 
 		internal bool IsVisible = true;
 
-		protected Spirit ( IPlayScene scene, int type, Vector2 location, string movieName, string extendMovieName, float speed, int angle, HitArea hitArea, int width, int height, double destroySecond, bool isMovieRotable, bool isAreaLimited, bool isAreaEntered, double areaSecond )
-#if !SILVERLIGHT
-			: base ( scene.World )
-#endif
+		protected Spirit ( IScene scene, int type, Vector2 location, string movieName, string extendMovieName, float speed, int angle, HitArea hitArea, int width, int height, double destroySecond, bool isMovieRotable, bool isAreaLimited, bool isAreaEntered, double areaSecond )
 		{
 
 			if ( null == scene || string.IsNullOrEmpty ( movieName ) )
@@ -205,7 +204,6 @@ namespace zoyobar.game
 		protected virtual void Dispose ( bool disposing )
 		{
 
-			//!+ 我们需要释放电影，因为他们是场景中电影的拷贝。
 			if ( disposing )
 			{
 				this.movie.Ended -= this.movieEnded;
@@ -214,7 +212,6 @@ namespace zoyobar.game
 				if ( null != this.extendMovie )
 					this.extendMovie.Dispose ( );
 
-				//! 这里我们销毁了 HitArea。
 				if ( null != this.HitArea )
 					this.HitArea.Dispose ( );
 
@@ -224,7 +221,6 @@ namespace zoyobar.game
 
 		internal void Update ( GameTime time )
 		{
-			//! 不管何种情况，都可以进入下一帧，并将当前位置设置为电影的位置。
 			Movie.NextFrame ( this.movie );
 
 			if ( null != this.extendMovie )
@@ -238,7 +234,6 @@ namespace zoyobar.game
 		internal void Draw ( GameTime time )
 		{
 
-			//lock ( World.SceneLock )
 			if ( !this.scene.IsClosed && this.IsVisible )
 			{
 				this.spiritBatch.Begin ( );
@@ -257,14 +252,10 @@ namespace zoyobar.game
 				return;
 			}
 
+			/*
 			if ( this.isAreaLimited )
 				if ( this.HitArea.HitTest ( this.scene.BattleArea ) )
 				{
-
-#if DEBUG
-					Debug.WriteLine ( this, !this.isAreaEntered, "$t in $BA first time" );
-#endif
-
 					this.isAreaEntered = true;
 				}
 				else
@@ -272,14 +263,10 @@ namespace zoyobar.game
 					|| ( this.areaFrameCount > 0 && --this.areaFrameCount <= 0 )
 					)
 					{
-
-#if DEBUG
-						Debug.WriteLine ( this, this.isAreaEntered, "$t out $BA", "$t timeout for $BA" );
-#endif
-
 						this.Destroy ( );
 						return;
 					}
+			*/
 
 			if ( this.isMoving && this.isMovable )
 				this.move ( );
