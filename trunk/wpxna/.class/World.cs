@@ -10,7 +10,8 @@
 //#define T10
 //#define T11
 //#define T12
-#define T13
+//#define T13
+#define T14
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -110,6 +111,82 @@ namespace zoyobar.game
 		private readonly bool isVertical;
 
 		private readonly GameTimer timer = new GameTimer ( );
+
+		#region " SpiritCollection "
+		internal sealed class SpiritCollection
+		{
+			private readonly List<Spirit> spirits = new List<Spirit> ( );
+
+			private bool isInitialized = false;
+
+			internal SpiritCollection ( )
+			{ }
+
+			internal void Initialize ( )
+			{
+
+				if ( this.isInitialized )
+					return;
+
+				foreach ( Spirit spirit in this.spirits.ToArray ( ) )
+					spirit.LoadContent ( );
+
+				this.isInitialized = true;
+			}
+
+			internal void Update ( GameTime time )
+			{
+
+				foreach ( Spirit spirit in this.spirits.ToArray ( ) )
+					spirit.Update ( time );
+
+			}
+
+			internal void Draw ( GameTime time )
+			{
+
+				foreach ( Spirit spirit in this.spirits.ToArray ( ) )
+					spirit.Draw ( time );
+
+			}
+
+			internal void Add ( Spirit spirit )
+			{
+
+				if ( spirit == null || this.spirits.Contains ( spirit ) )
+					return;
+
+				if ( isInitialized )
+					spirit.LoadContent ( );
+
+				spirit.DrawOrderChanged += this.drawOrderChanged;
+				this.spirits.Add ( spirit );
+				this.spirits.Sort ( DrawableSort );
+			}
+
+			internal bool Remove ( Spirit spirit )
+			{
+
+				if ( spirit == null )
+					return false;
+
+				spirit.DrawOrderChanged -= this.drawOrderChanged;
+
+				return this.spirits.Remove ( spirit );
+			}
+
+			private void drawOrderChanged ( object sender, SpiritEventArgs e )
+			{ this.spirits.Sort ( DrawableSort ); }
+
+			private static int DrawableSort ( Spirit a, Spirit b )
+			{
+				return a.DrawOrder.CompareTo ( b.DrawOrder );
+			}
+
+		}
+		#endregion
+
+		internal readonly SpiritCollection Components = new SpiritCollection ( );
 
 		private bool isPreserved = false;
 
@@ -333,6 +410,10 @@ namespace zoyobar.game
 #if T13
 			this.appendScene ( new Scene[] { new mygame.test.SceneT13 ( ) } );
 #endif
+
+#if T14
+			this.appendScene ( new Scene[] { new mygame.test.SceneT14 ( ) } );
+#endif
 			#endregion
 
 			base.OnNavigatedTo ( e );
@@ -368,6 +449,8 @@ namespace zoyobar.game
 			for ( int index = scenes.Length - 1; index >= 0; index-- )
 				if ( null != scenes[ index ] && scenes[ index ].Input ( this.controller ) )
 					break;
+
+			this.Components.Update ( time );
 
 			#region " Example "
 #if T2
@@ -457,7 +540,7 @@ namespace zoyobar.game
 
 					if ( !isBroken && scene.IsBroken )
 					{
-						// Draw sprites
+						this.Components.Draw ( time );
 						isBroken = true;
 					}
 
@@ -465,8 +548,7 @@ namespace zoyobar.game
 				}
 
 			if ( !isBroken )
-				// Draw sprites.
-				;
+				this.Components.Draw ( time );
 
 			#region " Example "
 #if T1

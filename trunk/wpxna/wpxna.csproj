@@ -88,6 +88,7 @@
     <Compile Include=".class\spirit\Spirit.cs" />
     <Compile Include=".class\spirit\SpiritEventArgs.cs" />
     <Compile Include=".class\World.cs" />
+    <Compile Include=".enum\DirectionType.cs" />
     <Compile Include=".enum\MotionType.cs" />
     <Compile Include=".interface\IHandleable.cs" />
     <Compile Include=".interface\ILockable.cs" />
