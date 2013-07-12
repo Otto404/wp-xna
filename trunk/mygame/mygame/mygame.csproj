@@ -149,6 +149,9 @@
     <Compile Include="..\..\wpxna\.class\spirit\SpiritEventArgs.cs">
       <Link>.class\spirit\SpiritEventArgs.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\SpiritManager.cs">
+      <Link>.class\spirit\SpiritManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\World.cs">
       <Link>.class\World.cs</Link>
     </Compile>
@@ -183,6 +186,7 @@
     <Compile Include="test\SceneT12.cs" />
     <Compile Include="test\SceneT13.cs" />
     <Compile Include="test\SceneT14.cs" />
+    <Compile Include="test\SceneT15.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>

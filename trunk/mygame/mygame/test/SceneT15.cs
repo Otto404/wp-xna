@@ -7,10 +7,11 @@ using zoyobar.game;
 namespace mygame.test
 {
 
-	internal sealed class SceneT14
+	internal sealed class SceneT15
 		: CommandScene
 	{
 
+		#region " Bird "
 		internal class Bird
 			: Spirit
 		{
@@ -57,12 +58,39 @@ namespace mygame.test
 			}
 
 		}
+		#endregion
 
-		private Bird bird;
+		internal class BirdManager
+			: SpiritManager<Bird>
+		{
+
+			internal BirdManager ( )
+				: base ( )
+			{ }
+
+			internal void Go ( )
+			{
+
+				foreach ( Bird bird in this.Spirits )
+					bird.Go ( );
+
+			}
+
+			internal void Stop ( )
+			{
+
+				foreach ( Bird bird in this.Spirits )
+					bird.Stop ( );
+
+			}
+
+		}
+
+		private BirdManager birdManager;
 		private readonly Button goButton;
 		private readonly Button stopButton;
 
-		internal SceneT14 ( )
+		internal SceneT15 ( )
 			: base ( Vector2.Zero, GestureType.None, "background1",
 			new Resource[] {
 				new Resource ( "bird2.image", ResourceType.Image, @"image\bird2" ),
@@ -79,6 +107,9 @@ namespace mygame.test
 			}
 			)
 		{
+			this.birdManager = new BirdManager ( );
+			this.birdManager.Scene = this;
+
 			this.goButton = this.makings[ "b.go" ] as Button;
 			this.stopButton = this.makings[ "b.play" ] as Button;
 
@@ -87,26 +118,31 @@ namespace mygame.test
 		}
 
 		private void goButtonSelected ( object sender, ButtonEventArgs e )
-		{ this.bird.Go ( ); }
+		{ this.birdManager.Go ( ); }
 
 		private void stopButtonSelected ( object sender, ButtonEventArgs e )
-		{ this.bird.Stop ( ); }
+		{ this.birdManager.Stop ( ); }
 
 		public override void LoadContent ( )
 		{
 			base.LoadContent ( );
 
-			this.bird = new Bird ( this, new Vector2 ( 200, 100 ) );
-
-			this.world.Components.Add ( this.bird );
+			this.birdManager.Append ( new Bird ( this, new Vector2 ( 200, 100 ) ) );
+			this.birdManager.Append ( new Bird ( this, new Vector2 ( 300, 200 ) ) );
 		}
 
 		public override void UnloadContent ( )
 		{
-			this.world.Components.Remove ( this.bird );
-			this.bird.Dispose ( );
+			this.birdManager.RemoveAll ( );
 
 			base.UnloadContent ( );
+		}
+
+		public override void Dispose ( )
+		{
+			this.birdManager.Dispose ( );
+
+			base.Dispose ( );
 		}
 
 	}
