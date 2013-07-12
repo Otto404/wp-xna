@@ -11,7 +11,8 @@
 //#define T11
 //#define T12
 //#define T13
-#define T14
+//#define T14
+#define T15
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -353,6 +354,7 @@ namespace zoyobar.game
 			this.spiritBatch = new SpriteBatch ( this.GraphicsDevice );
 			this.Services.AddService ( typeof ( SpriteBatch ), this.spiritBatch );
 			this.isInitialized = true;
+			this.Components.Initialize ( );
 
 			foreach ( Scene scene in this.scenes )
 				scene.LoadContent ( );
@@ -413,6 +415,10 @@ namespace zoyobar.game
 
 #if T14
 			this.appendScene ( new Scene[] { new mygame.test.SceneT14 ( ) } );
+#endif
+
+#if T15
+			this.appendScene ( new Scene[] { new mygame.test.SceneT15 ( ) } );
 #endif
 			#endregion
 

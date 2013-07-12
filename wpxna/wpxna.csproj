@@ -87,6 +87,7 @@
     <Compile Include=".class\scene\SceneLoaderEventArgs.cs" />
     <Compile Include=".class\spirit\Spirit.cs" />
     <Compile Include=".class\spirit\SpiritEventArgs.cs" />
+    <Compile Include=".class\spirit\SpiritManager.cs" />
     <Compile Include=".class\World.cs" />
     <Compile Include=".enum\DirectionType.cs" />
     <Compile Include=".enum\MotionType.cs" />
