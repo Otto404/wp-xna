@@ -68,6 +68,9 @@
     <Compile Include="..\..\wpxna\.class\Calculator.cs">
       <Link>.class\Calculator.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\hit\BulletHitAreaEventArgs.cs">
+      <Link>.class\hit\BulletHitAreaEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\hit\HitArea.cs">
       <Link>.class\hit\HitArea.cs</Link>
     </Compile>
@@ -143,6 +146,12 @@
     <Compile Include="..\..\wpxna\.class\scene\SceneLoaderEventArgs.cs">
       <Link>.class\scene\SceneLoaderEventArgs.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\bullet\Bullet.cs">
+      <Link>.class\spirit\bullet\Bullet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\bullet\BulletManager.cs">
+      <Link>.class\spirit\bullet\BulletManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\spirit\Spirit.cs">
       <Link>.class\spirit\Spirit.cs</Link>
     </Compile>
@@ -160,6 +169,9 @@
     </Compile>
     <Compile Include="..\..\wpxna\.enum\MotionType.cs">
       <Link>.enum\MotionType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.interface\IAssailable.cs">
+      <Link>.interface\IAssailable.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.interface\IHandleable.cs">
       <Link>.interface\IHandleable.cs</Link>
@@ -187,6 +199,7 @@
     <Compile Include="test\SceneT13.cs" />
     <Compile Include="test\SceneT14.cs" />
     <Compile Include="test\SceneT15.cs" />
+    <Compile Include="test\SceneT16.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>

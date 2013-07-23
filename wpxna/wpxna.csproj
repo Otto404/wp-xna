@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include=".class\AudioManager.cs" />
     <Compile Include=".class\Calculator.cs" />
+    <Compile Include=".class\hit\BulletHitAreaEventArgs.cs" />
     <Compile Include=".class\hit\HitArea.cs" />
     <Compile Include=".class\hit\HitAreaEventArgs.cs" />
     <Compile Include=".class\hit\MultiRectangleHitArea.cs" />
@@ -85,12 +86,15 @@
     <Compile Include=".class\scene\SceneEventArgs.cs" />
     <Compile Include=".class\scene\SceneLoader.cs" />
     <Compile Include=".class\scene\SceneLoaderEventArgs.cs" />
+    <Compile Include=".class\spirit\bullet\Bullet.cs" />
+    <Compile Include=".class\spirit\bullet\BulletManager.cs" />
     <Compile Include=".class\spirit\Spirit.cs" />
     <Compile Include=".class\spirit\SpiritEventArgs.cs" />
     <Compile Include=".class\spirit\SpiritManager.cs" />
     <Compile Include=".class\World.cs" />
     <Compile Include=".enum\DirectionType.cs" />
     <Compile Include=".enum\MotionType.cs" />
+    <Compile Include=".interface\IAssailable.cs" />
     <Compile Include=".interface\IHandleable.cs" />
     <Compile Include=".interface\ILockable.cs" />
     <Compile Include=".interface\IMountable.cs" />
