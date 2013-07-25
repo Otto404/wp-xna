@@ -8,7 +8,7 @@ namespace mygame.test
 {
 
 	internal sealed class SceneT15
-		: CommandScene
+		: CommandScene, IPlayScene
 	{
 
 		#region " Bird "
@@ -16,7 +16,7 @@ namespace mygame.test
 			: Spirit
 		{
 
-			internal Bird ( IScene scene, Vector2 location )
+			internal Bird ( IPlayScene scene, Vector2 location )
 				: base ( scene, 0, location,
 				"bird", null,
 				4, 0,

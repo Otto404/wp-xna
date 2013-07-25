@@ -11,8 +11,7 @@ namespace zoyobar.game
 		internal event EventHandler<SpiritEventArgs> Destroyed;
 		internal event EventHandler<SpiritEventArgs> DrawOrderChanged;
 
-		//protected readonly IPlayScene scene;
-		protected readonly IScene scene;
+		protected readonly IPlayScene scene;
 		private readonly World world;
 		protected readonly AudioManager audioManager;
 
@@ -108,7 +107,7 @@ namespace zoyobar.game
 
 		internal bool IsVisible = true;
 
-		protected Spirit ( IScene scene, int type, Vector2 location, string movieName, string extendMovieName, float speed, int angle, HitArea hitArea, int width, int height, double destroySecond, bool isMovieRotable, bool isAreaLimited, bool isAreaEntered, double areaSecond )
+		protected Spirit ( IPlayScene scene, int type, Vector2 location, string movieName, string extendMovieName, float speed, int angle, HitArea hitArea, int width, int height, double destroySecond, bool isMovieRotable, bool isAreaLimited, bool isAreaEntered, double areaSecond )
 		{
 
 			if ( null == scene || string.IsNullOrEmpty ( movieName ) )

@@ -7,17 +7,18 @@ using zoyobar.game;
 namespace mygame.test
 {
 
-	internal sealed class SceneT16
-		: CommandScene, IPlayScene
+	internal sealed class SceneT17
+		: CommandScene
 	{
 
+		#region " Bird "
 		internal class Bird
 			: Spirit, IAssailable
 		{
 			private int life = 10;
 			internal bool IsDied = false;
 
-			internal Bird ( IPlayScene scene, Vector2 location )
+			internal Bird ( IScene scene, Vector2 location )
 				: base ( scene, 0, location,
 				"bird", null,
 				4, 0,
@@ -51,7 +52,9 @@ namespace mygame.test
 			{ return this.Location - this.halfSize; }
 
 		}
+		#endregion
 
+		#region " BirdManager "
 		internal class BirdManager
 			: SpiritManager<Bird>
 		{
@@ -61,12 +64,14 @@ namespace mygame.test
 			{ }
 
 		}
+		#endregion
 
+		#region " MyBullet "
 		internal class MyBullet
 			: Bullet
 		{
 
-			internal MyBullet ( IPlayScene scene, Vector2 location, int angle )
+			internal MyBullet ( IScene scene, Vector2 location, int angle )
 				: base ( scene, 100, location, "mybutton", 5, angle,
 				new SingleRectangleHitArea ( new Rectangle ( -5, -5, 10, 10 ) ),
 				10, 10,
@@ -88,13 +93,14 @@ namespace mygame.test
 			}
 
 		}
+		#endregion
 
 		private Bird bird;
 		private BirdManager birdManager;
 		private BulletManager bulletManager;
 		private readonly Button goButton;
 
-		internal SceneT16 ( )
+		internal SceneT17 ( )
 			: base ( Vector2.Zero, GestureType.None, "background1",
 			new Resource[] {
 				new Resource ( "bird2.image", ResourceType.Image, @"image\bird2" ),
