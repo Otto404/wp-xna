@@ -152,6 +152,12 @@
     <Compile Include="..\..\wpxna\.class\spirit\bullet\BulletManager.cs">
       <Link>.class\spirit\bullet\BulletManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\item\Item.cs">
+      <Link>.class\spirit\item\Item.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\item\ItemManager.cs">
+      <Link>.class\spirit\item\ItemManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\spirit\Spirit.cs">
       <Link>.class\spirit\Spirit.cs</Link>
     </Compile>
@@ -181,6 +187,9 @@
     </Compile>
     <Compile Include="..\..\wpxna\.interface\IMountable.cs">
       <Link>.interface\IMountable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.interface\IPlayScene.cs">
+      <Link>.interface\IPlayScene.cs</Link>
     </Compile>
     <Compile Include="..\..\wpxna\.interface\IScene.cs">
       <Link>.interface\IScene.cs</Link>

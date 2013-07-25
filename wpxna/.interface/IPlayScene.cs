@@ -6,7 +6,7 @@ namespace zoyobar.game
 	internal interface IPlayScene
 		: IScene
 	{
-
+		/*
 		BulletManager BulletManager
 		{
 			get;
@@ -51,6 +51,7 @@ namespace zoyobar.game
 		void Start ( );
 		void Over ( PlayResultType resultType );
 		void Quit ( );
+		 * */
 	}
 
 }

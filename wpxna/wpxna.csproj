@@ -88,6 +88,8 @@
     <Compile Include=".class\scene\SceneLoaderEventArgs.cs" />
     <Compile Include=".class\spirit\bullet\Bullet.cs" />
     <Compile Include=".class\spirit\bullet\BulletManager.cs" />
+    <Compile Include=".class\spirit\item\Item.cs" />
+    <Compile Include=".class\spirit\item\ItemManager.cs" />
     <Compile Include=".class\spirit\Spirit.cs" />
     <Compile Include=".class\spirit\SpiritEventArgs.cs" />
     <Compile Include=".class\spirit\SpiritManager.cs" />
@@ -98,6 +100,7 @@
     <Compile Include=".interface\IHandleable.cs" />
     <Compile Include=".interface\ILockable.cs" />
     <Compile Include=".interface\IMountable.cs" />
+    <Compile Include=".interface\IPlayScene.cs" />
     <Compile Include=".interface\IScene.cs" />
     <Compile Include=".interface\ISpirit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

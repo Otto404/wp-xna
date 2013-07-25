@@ -13,8 +13,7 @@ namespace zoyobar.game
 		internal readonly List<T> Spirits = new List<T> ( );
 		private readonly int defaultOrder;
 
-		//internal IPlayScene Scene;
-		internal IScene Scene;
+		internal IPlayScene Scene;
 
 		protected SpiritManager ( )
 			: this ( 0 )

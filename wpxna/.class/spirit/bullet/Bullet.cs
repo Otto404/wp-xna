@@ -11,7 +11,7 @@ namespace zoyobar.game
 		internal readonly int Power;
 		private int life;
 
-		protected Bullet ( /* IPlayScene scene */ IScene scene, int type, Vector2 location, string movieName, float speed, int angle, HitArea hitArea, int width, int height, int power, int life, double destroySecond, bool isMovieRotable, bool isAreaLimited, bool isAreaEntered, double areaSecond )
+		protected Bullet ( IPlayScene scene, int type, Vector2 location, string movieName, float speed, int angle, HitArea hitArea, int width, int height, int power, int life, double destroySecond, bool isMovieRotable, bool isAreaLimited, bool isAreaEntered, double areaSecond )
 			: base ( scene, type, location, movieName,
 			null,
 			speed, angle, hitArea, width, height, destroySecond, isMovieRotable, isAreaLimited, isAreaEntered, areaSecond )
