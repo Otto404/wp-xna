@@ -90,6 +90,8 @@
     <Compile Include=".class\spirit\bullet\BulletManager.cs" />
     <Compile Include=".class\spirit\item\Item.cs" />
     <Compile Include=".class\spirit\item\ItemManager.cs" />
+    <Compile Include=".class\spirit\pinup\Pinup.cs" />
+    <Compile Include=".class\spirit\pinup\PinupManager.cs" />
     <Compile Include=".class\spirit\Spirit.cs" />
     <Compile Include=".class\spirit\SpiritEventArgs.cs" />
     <Compile Include=".class\spirit\SpiritManager.cs" />

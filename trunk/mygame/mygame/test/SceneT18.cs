@@ -7,7 +7,7 @@ using zoyobar.game;
 namespace mygame.test
 {
 
-	internal sealed class SceneT17
+	internal sealed class SceneT18
 		: CommandScene, IPlayScene
 	{
 
@@ -95,6 +95,7 @@ namespace mygame.test
 		}
 		#endregion
 
+		#region " MyItem "
 		internal class MyItem
 			: Item
 		{
@@ -112,19 +113,37 @@ namespace mygame.test
 			{ }
 
 		}
+		#endregion
+
+		internal class MyHit
+			: Pinup
+		{
+
+			internal MyHit ( IPlayScene scene, Vector2 location )
+				: base ( scene, 1, location, "mypinup", 0, 0,
+				30, 30,
+				1
+				)
+			{ }
+
+		}
 
 		private Bird bird;
 		private BirdManager birdManager;
 		private BulletManager bulletManager;
 		private ItemManager itemManager;
+		private PinupManager pinupManager;
 		private readonly Button goButton;
 
-		internal SceneT17 ( )
+		private bool is1Hit = false;
+
+		internal SceneT18 ( )
 			: base ( Vector2.Zero, GestureType.None, "background1",
 			new Resource[] {
 				new Resource ( "bird2.image", ResourceType.Image, @"image\bird2" ),
 				new Resource ( "bullet.image", ResourceType.Image, @"image\bullet" ),
 				new Resource ( "item.image", ResourceType.Image, @"image\item" ),
+				new Resource ( "pinup.image", ResourceType.Image, @"image\pinup1" ),
 				new Resource ( "go.image", ResourceType.Image, @"image\button1" ),
 			},
 			new Making[] {
@@ -136,6 +155,9 @@ namespace mygame.test
 					),
 				new Movie ( "myitem", "item.image", 30, 30, 0, "i",
 					new MovieSequence ( "i", new Point ( 1, 1 ) )
+					),
+				new Movie ( "mypinup", "pinup.image", 100, 50, 0, "p",
+					new MovieSequence ( "p", new Point ( 1, 1 ) )
 					),
 				new Button ( "b.go", "go.image", "GO", new Vector2 ( 10, 690 ), 100, 50, new Point ( 1, 1 ) ),
 			}
@@ -152,6 +174,9 @@ namespace mygame.test
 			this.itemManager.Scene = this;
 			this.itemManager.HitTesting += this.itemHitTesting;
 			this.itemManager.Picked += this.itemPicked;
+
+			this.pinupManager = new PinupManager ( );
+			this.pinupManager.Scene = this;
 
 			this.goButton = this.makings[ "b.go" ] as Button;
 
@@ -179,6 +204,13 @@ namespace mygame.test
 			{
 				e.IsHit = true;
 				e.Targets = new IAssailable[] { this.bird };
+
+				if ( !this.is1Hit )
+				{
+					this.is1Hit = true;
+					this.pinupManager.Append ( new MyHit ( this, new Vector2 ( 0, 400 ) ) );
+				}
+
 			}
 
 		}
@@ -210,6 +242,7 @@ namespace mygame.test
 			this.birdManager.RemoveAll ( );
 			this.bulletManager.RemoveAll ( );
 			this.itemManager.RemoveAll ( );
+			this.pinupManager.RemoveAll ( );
 
 			base.UnloadContent ( );
 		}
@@ -224,6 +257,8 @@ namespace mygame.test
 			this.itemManager.HitTesting -= this.itemHitTesting;
 			this.itemManager.Picked -= this.itemPicked;
 			this.itemManager.Dispose ( );
+
+			this.pinupManager.Dispose ( );
 
 			this.goButton.Selected -= this.goButtonSelected;
 

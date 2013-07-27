@@ -158,6 +158,12 @@
     <Compile Include="..\..\wpxna\.class\spirit\item\ItemManager.cs">
       <Link>.class\spirit\item\ItemManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\pinup\Pinup.cs">
+      <Link>.class\spirit\pinup\Pinup.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\pinup\PinupManager.cs">
+      <Link>.class\spirit\pinup\PinupManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\spirit\Spirit.cs">
       <Link>.class\spirit\Spirit.cs</Link>
     </Compile>
@@ -201,6 +207,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test\SceneT17.cs" />
     <Compile Include="test\SceneT9.cs" />
     <Compile Include="test\SceneT10.cs" />
     <Compile Include="test\SceneT11.cs" />
@@ -209,6 +216,7 @@
     <Compile Include="test\SceneT14.cs" />
     <Compile Include="test\SceneT15.cs" />
     <Compile Include="test\SceneT16.cs" />
+    <Compile Include="test\SceneT18.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>
