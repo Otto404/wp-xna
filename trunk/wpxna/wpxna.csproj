@@ -64,6 +64,7 @@
     <Compile Include=".class\hit\HitArea.cs" />
     <Compile Include=".class\hit\HitAreaEventArgs.cs" />
     <Compile Include=".class\hit\MultiRectangleHitArea.cs" />
+    <Compile Include=".class\hit\RegionHitAreaEventArgs.cs" />
     <Compile Include=".class\hit\SingleRectangleHitArea.cs" />
     <Compile Include=".class\input\Controller.cs" />
     <Compile Include=".class\input\Motion.cs" />
@@ -92,6 +93,8 @@
     <Compile Include=".class\spirit\item\ItemManager.cs" />
     <Compile Include=".class\spirit\pinup\Pinup.cs" />
     <Compile Include=".class\spirit\pinup\PinupManager.cs" />
+    <Compile Include=".class\spirit\region\Region.cs" />
+    <Compile Include=".class\spirit\region\RegionManager.cs" />
     <Compile Include=".class\spirit\Spirit.cs" />
     <Compile Include=".class\spirit\SpiritEventArgs.cs" />
     <Compile Include=".class\spirit\SpiritManager.cs" />
