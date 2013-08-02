@@ -80,6 +80,9 @@
     <Compile Include="..\..\wpxna\.class\hit\MultiRectangleHitArea.cs">
       <Link>.class\hit\MultiRectangleHitArea.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\hit\RegionHitAreaEventArgs.cs">
+      <Link>.class\hit\RegionHitAreaEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\hit\SingleRectangleHitArea.cs">
       <Link>.class\hit\SingleRectangleHitArea.cs</Link>
     </Compile>
@@ -164,6 +167,12 @@
     <Compile Include="..\..\wpxna\.class\spirit\pinup\PinupManager.cs">
       <Link>.class\spirit\pinup\PinupManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\region\Region.cs">
+      <Link>.class\spirit\region\Region.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\region\RegionManager.cs">
+      <Link>.class\spirit\region\RegionManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\spirit\Spirit.cs">
       <Link>.class\spirit\Spirit.cs</Link>
     </Compile>
@@ -217,6 +226,7 @@
     <Compile Include="test\SceneT15.cs" />
     <Compile Include="test\SceneT16.cs" />
     <Compile Include="test\SceneT18.cs" />
+    <Compile Include="test\SceneT19.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>
