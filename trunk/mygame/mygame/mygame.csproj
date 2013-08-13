@@ -161,6 +161,18 @@
     <Compile Include="..\..\wpxna\.class\spirit\item\ItemManager.cs">
       <Link>.class\spirit\item\ItemManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\npc\NPC.cs">
+      <Link>.class\spirit\npc\NPC.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\npc\NPCAction.cs">
+      <Link>.class\spirit\npc\NPCAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\npc\NPCEventArgs.cs">
+      <Link>.class\spirit\npc\NPCEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\wpxna\.class\spirit\npc\NPCManager.cs">
+      <Link>.class\spirit\npc\NPCManager.cs</Link>
+    </Compile>
     <Compile Include="..\..\wpxna\.class\spirit\pinup\Pinup.cs">
       <Link>.class\spirit\pinup\Pinup.cs</Link>
     </Compile>
@@ -227,6 +239,7 @@
     <Compile Include="test\SceneT16.cs" />
     <Compile Include="test\SceneT18.cs" />
     <Compile Include="test\SceneT19.cs" />
+    <Compile Include="test\SceneT20.cs" />
     <Compile Include="World.xaml.cs">
       <DependentUpon>World.xaml</DependentUpon>
     </Compile>
