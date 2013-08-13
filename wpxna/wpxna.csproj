@@ -91,6 +91,10 @@
     <Compile Include=".class\spirit\bullet\BulletManager.cs" />
     <Compile Include=".class\spirit\item\Item.cs" />
     <Compile Include=".class\spirit\item\ItemManager.cs" />
+    <Compile Include=".class\spirit\npc\NPC.cs" />
+    <Compile Include=".class\spirit\npc\NPCAction.cs" />
+    <Compile Include=".class\spirit\npc\NPCEventArgs.cs" />
+    <Compile Include=".class\spirit\npc\NPCManager.cs" />
     <Compile Include=".class\spirit\pinup\Pinup.cs" />
     <Compile Include=".class\spirit\pinup\PinupManager.cs" />
     <Compile Include=".class\spirit\region\Region.cs" />

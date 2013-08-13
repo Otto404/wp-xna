@@ -16,7 +16,8 @@
 //#define T16
 //#define T17
 //#define T18
-#define T19
+//#define T19
+#define T20
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -439,6 +440,10 @@ namespace zoyobar.game
 
 #if T19
 			this.appendScene ( new Scene[] { new mygame.test.SceneT19 ( ) } );
+#endif
+
+#if T20
+			this.appendScene ( new Scene[] { new mygame.test.SceneT20 ( ) } );
 #endif
 			#endregion
 
